@@ -16,5 +16,14 @@ class Db
         $res = $sth->execute();
         return $res;
     }
+    public function query($sql)
+    {
+        $sth = $this->dbh->prepare($sql); // подготовили выражение
+        $res = $sth->execute(); // выполнили запрос
+        if ( false !== $res ) {
+            return $sth->fetchAll(); // получаем все данные результата запроса
+        }
+        return[]; // в противном случаем вернем пустой массив
+    }
 
 }
