@@ -16,12 +16,12 @@ class Db
         $res = $sth->execute();
         return $res;
     }
-    public function query($sql)
+    public function query($sql, $class)
     {
         $sth = $this->dbh->prepare($sql); // подготовили выражение
         $res = $sth->execute(); // выполнили запрос
         if ( false !== $res ) {
-            return $sth->fetchAll(); // получаем все данные результата запроса
+            return $sth->fetchAll(\PDO::FETCH_CLASS, $class); // получаем все данные результата запроса // режим превращения данных, какого класса должег быть объект
         }
         return[]; // в противном случаем вернем пустой массив
     }
