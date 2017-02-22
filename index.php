@@ -3,14 +3,12 @@ use App\Model;
 use App\Models\User;
 require __DIR__ . '/autoload.php';
 
-$users = User::findAll();
+$user = new User();
 
+$user->name = 'Vasya';
+$user->email = 'vasya@exzample.com';
 
-function sendEmail(Model $user, $message)
-{
-    echo 'Почта уходит на ' . $user->email;
-}
-sendEmail($users[1], 'Hello');
+$user->insert();
 
 echo '<pre>';
 print_r($users);
