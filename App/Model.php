@@ -2,13 +2,13 @@
 
 namespace App;
 
-class Model
+abstract class Model
 {
     const TABLE = '';
 
     public static function findAll()
     {
-        $db = new Db(); // создали объект класса Db
+        $db = Db::instance(); // создали объект класса Db
         return $db->query(
             'SELECT * FROM ' . static::TABLE, // обращение к свойству внутри класса
             static::class
