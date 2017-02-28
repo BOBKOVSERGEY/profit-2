@@ -17,10 +17,12 @@ class Db
         $res = $sth->execute($params);
         return $res;
     }
-    public function query($sql, $class)
+
+
+    public function query($sql, $params, $class)
     {
         $sth = $this->dbh->prepare($sql); // подготовили выражение
-        $res = $sth->execute(); // выполнили запрос
+        $res = $sth->execute($params); // выполнили запрос
         if ( false !== $res ) {
             return $sth->fetchAll(\PDO::FETCH_CLASS, $class); // получаем все данные результата запроса // режим превращения данных, какого класса должег быть объект
         }
