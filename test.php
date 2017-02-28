@@ -2,13 +2,8 @@
 
 require __DIR__ . '/autoload.php';
 
-$s = \App\Singleton::instance();
-$s->counter = 1;
-echo '<pre>';
-print_r($s);
-echo '</pre>';
-$s = \App\Singleton::instance();
+$news = \App\Models\News::findAll();
 
 echo '<pre>';
-print_r($s);
+var_dump($news);
 echo '</pre>';

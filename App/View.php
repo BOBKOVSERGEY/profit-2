@@ -3,6 +3,7 @@
 namespace App;
 
 class View
+    implements \Countable
 {
     protected $data = [];
 
@@ -30,4 +31,8 @@ class View
         echo $this->render($template);
     }
 
+    public function count()
+    {
+        return count($this->data);
+    }
 }
