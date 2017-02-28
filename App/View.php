@@ -20,6 +20,12 @@ class View
     public function render($template)
     {
         ob_start(); // функция, которая включает буфер вывода
+
+        foreach ($this->data as $prop => $val)
+        {
+            $$prop = $val; // $$ переменная, чье имя содержится в переменной
+        }
+
         include $template;
         $content = ob_get_contents();
         ob_end_clean(); // выключает буфер вывода и очищает его
