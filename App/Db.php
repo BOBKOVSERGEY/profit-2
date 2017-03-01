@@ -8,7 +8,14 @@ class Db
     protected $dbh;
     protected function __construct()
     {
-        $this->dbh = new \PDO('mysql:host=localhost;dbname=test', 'root', '');
+        try
+        {
+            $this->dbh = new \PDO('mysql:host=localhost;dbname=test', 'root', '');
+        } catch (\PDOException $e)
+        {
+            throw new \App\Exceptions\Db();
+        }
+
     }
 
     public function execute($sql, $params = [])

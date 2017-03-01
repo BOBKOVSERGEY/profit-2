@@ -2,10 +2,16 @@
 
 require __DIR__ . '/autoload.php';
 
-$news = \App\Models\News::findAll();
+$a = new \App\Collection();
+$a[] = 1;
+$a[1] = 11;
+$a[2] = 234;
+
+foreach ($a as $el)
+{
+    echo $el . '<br>';
+}
+
 echo '<pre>';
-print_r($news[0]->author);
+print_r($a);
 echo '</pre>';
-//echo '<pre>';
-//var_dump($news);
-//echo '</pre>';

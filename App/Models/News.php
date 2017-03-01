@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Model;
+use App\MultiException;
 
 /**
  * Class News
@@ -47,6 +48,20 @@ class News
             default:
                 return false;
         }
+    }
+
+    public function fill($data = [])
+    {
+        $e = new MultiException();
+        if (true)
+        {
+            $e[] = new \Exception('Заголовок не верный');
+        }
+        if (true)
+        {
+            $e[] = new \Exception('Текст не верный');
+        }
+        throw $e;
     }
 
 }

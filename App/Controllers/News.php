@@ -3,6 +3,9 @@
 namespace App\Controllers;
 
 
+use App\Exceptions\Core;
+use App\Exceptions\Db;
+use App\MultiException;
 use App\View;
 
 class News
@@ -24,7 +27,8 @@ class News
 
     protected function beforeAction()
     {
-
+        //$ex = new Db('Сообщение об исключении');
+        //throw $ex;
     }
 
     protected function actionIndex()
@@ -40,6 +44,18 @@ class News
         $id = (int)$_GET['id'];
         $this->view->article = \App\Models\News::findById($id);
         echo $this->view->display(__DIR__ . '/../templates/one.php');
+    }
+
+    protected function actionCreate()
+    {
+        try {
+            $article = new \App\Models\News();
+            $article->fill([]);
+            $article->save();
+        } catch (MultiException $e) {
+            $this->view->errors = $e;
+        }
+        echo $this->view->display(__DIR__ . '/../templates/create.php');
     }
 
 }
